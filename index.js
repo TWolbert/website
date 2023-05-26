@@ -52,7 +52,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
     }
   
     // send image uploaded as response using sendFile
-    res.sendFile(`${__dirname}/img/${req.file.originalname}`);
+    res.send('succesfully uploaded ' + req.file.filename)
   });
 
 // Listen
