@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        :root {
+            --primary-button: #74c3a6;
+            --secondary-button: #091415;
+            --accent: #3f8792;
+            --text: #fbfdfc;
+            --background: #1d1d1d;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow-y: hidden;
+            background-color: var(--background);
+            color: var(--text);
+        }
+        span {
+            color: var(--accent);
+            text-shadow: 0px 0px 50px var(--accent);
+        }
+        h1 {
+            color: var(--text);
+            font-size: 3rem;
+        }
+        form {
+            background-color: var(--secondary-button);
+            padding: 20px;
+            border-radius: 18px;
+            font-size: 2rem;
+            border-radius: 50px;
+            background: #091415;
+            box-shadow:  20px 20px 60px #081112,
+                        -20px -20px 60px #0a1718;
+        }
+        input[type="file"] {
+            padding: 10px;
+            border: 2px dashed var(--accent);
+            border-radius: 18px;
+            font-size: 2rem;
+        }
+        /* Change file input button */
+        input[type="file"]::file-selector-button {
+            padding: 10px;
+            border-radius: 18px;
+            background-color: var(--primary-button);
+            color: white;
+            font-weight: bold;
+            transition: all 200ms ease;
+            border: none;
+        }
+        /* Change file input button hover */
+        input[type="file"]::file-selector-button:hover {
+            transform: translateY(-5%);
+        }
+        button {
+            padding: 1rem 2rem;
+            border-radius: 18px;
+            background-color: var(--primary-button);
+            color: white;
+            font-weight: bold;
+            transition: all 200ms ease;
+            border: none;
+            font-size: 3rem;
+            margin: 5rem 0;
+            border-radius: 18px;
+            background: #74c3a6;
+            box-shadow:  20px 20px 60px #63a68d,
+                        -20px -20px 60px #85e0bf;
+        }
+        button:hover {
+            transform: translateY(-5%);
+        }
+        label {
+            color: white;
+            font-weight: bold;
+        }
+        input[type="password"] {
+            padding: 10px;
+            border-radius: 18px;
+            font-size: 2rem;
+            border: none;
+            box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.274);
+        }
+    </style>
+    <script>
+        const handlesubmit = (e) => {
+            // Check password by fetching /password and seeing if return value matches
+            // If it does, then submit form
+            // If it doesn't, then don't submit form
+            fetch('/password')
+                .then(response => response.text())
+                .then(data => {
+                    if (data === document.getElementById('password').value) {
+                        document.getElementsByTagName('form')[0].submit();
+                    } else {
+                        alert('Incorrect password');
+                    }
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Upload <span>image</span> here</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" id="file">
+        <!-- Input text for password --><br>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password">
+    </form>
+    <button onclick="handlesubmit()">Submit</button><br>
+</body>
+</html>
