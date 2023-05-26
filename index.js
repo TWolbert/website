@@ -36,10 +36,11 @@ router.get('/img/:id', (req, res) => {
         res.sendFile(`${__dirname}/notavailable.jpg`)
     }
 })
-router.get('/', (req, res) => {
-    // Send index.html
-    res.sendFile(`${__dirname}/index.html`)
-})
+app.get('/', (req, res) => {
+    res.sendFile(`${__dirname}/index.html`);
+});
+
+
 router.get('/password', (req, res) => {
     console.log('password')
     res.send('Mario2006!')
