@@ -36,7 +36,7 @@ router.get('/img/:id', (req, res) => {
         res.sendFile(`${__dirname}/notavailable.jpg`)
     }
 })
-router.get('/img', (req, res) => {
+router.get('/', (req, res) => {
     // Send index.html
     res.sendFile(`${__dirname}/index.html`)
 })
